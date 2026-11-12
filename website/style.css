@@ -1,0 +1,239 @@
+@font-face {
+  font-family: "Mojangles";
+  src: url("fonts/mojangles.woff2") format("woff2");
+}
+
+:root {
+    --scale: 3;
+
+    /* Real pixel size of book.png (two-page spread) */
+    --book-w: 295px;
+    --book-h: 180px;
+
+    /* Text area for each page, measured in image pixels */
+    --page-w: 114px;
+    --page-h: 126px;
+
+    /* Where the left page's text starts, and the gap between the two text areas */
+    --pad-x: 22px;
+    --pad-y: 19.5px;
+    --page-gap: 23px;
+
+    --left-label-x: 79px;
+    --left-label-y: 154px;
+    --right-label-x: 217px;
+    --right-label-y: 154px;
+
+    font-family: monospace;
+    color:white;
+}
+
+#workspace {
+    display: flex;
+    align-items: flex-start;   /* both columns align to the top */
+    justify-content: center;
+    gap: calc(8px * var(--scale));
+}
+
+#input-section {
+    flex: 0 0 auto;            /* keep the textarea at its own size */
+}
+
+#output-section {
+    flex: 0 0 auto;            /* the book has a fixed pixel width */
+    justify-content: center;
+}
+
+#book {
+    width: calc(var(--book-w) * var(--scale));
+    height: calc(var(--book-h) * var(--scale));
+    box-sizing: border-box;
+    padding: calc(var(--pad-y) * var(--scale)) 0 0 calc(var(--pad-x) * var(--scale));
+    gap: calc(var(--page-gap) * var(--scale));
+
+    display: flex;
+    font-family: "Mojangles", monospace;
+    font-size: calc(8px * var(--scale));
+    font-synthesis: none;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    letter-spacing: calc(-.33333333333333px * var(--scale));
+    word-spacing: calc(2px * var(--scale));
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: none;
+
+    background: url("images/book_scholar.png") 0 0 / 100% 100% no-repeat;
+    image-rendering: pixelated;
+}
+
+.page {
+    width: calc(var(--page-w) * var(--scale));
+    height: calc(var(--page-h) * var(--scale));
+    color:#7B593D
+}
+
+/* .page { outline: 1px solid rgba(255, 0, 0, 0.6); } */
+
+.page .line {
+    height: calc(9px * var(--scale));
+    line-height: calc(9px * var(--scale));
+    white-space: pre;
+}
+
+.page-label {
+    position: absolute;
+    white-space: pre;
+    pointer-events: none;
+}
+
+#left-label  { 
+    top: calc(var(--left-label-y) * var(--scale)); 
+    color:#EFE5CB;
+}
+#right-label { 
+    top: calc(var(--right-label-y) * var(--scale)); 
+    color:#EFE5CB;
+}
+
+#book.java #left-label {
+    right: calc(var(--left-label-x) * var(--scale));
+    left: auto;
+    transform: none;
+}
+
+#book.java {
+    background-image: url("images/book_java.png");
+    --book-w: 146px;
+    --page-w: 114px;
+    --pad-x: 16px;
+    --pad-y: 27.5px;
+    --left-label-x: 18px;
+    --left-label-y: 12px;
+}
+#book.java #right-page,
+#book.java #right-label { display: none; }
+#book.java .page { color:black }
+#book.java .page-label {
+    color:black;
+}
+#book.java .page .line {
+    height: calc(9px * var(--scale));
+    line-height: calc(9px * var(--scale));
+    white-space: pre;
+}
+
+#book.scholar {
+    background-image: url("images/book_scholar.png");
+    --book-w: 295px;
+    --page-w: 114px;
+    --pad-x: 22px;
+    --pad-y: 19.5px;
+    --left-label-x: 79px;
+    --left-label-y: 154px;
+    --right-label-x: 217px;
+    --right-label-y: 154px;
+}
+#page.scholar { color:#7B593D }
+
+#book.scholar .page-label {
+    transform: translateX(-50%);
+    right: auto;
+    color:#EFE5CB;
+}
+#book.scholar .page .line {
+    height: calc(9px * var(--scale));
+    line-height: calc(9px * var(--scale));
+    white-space: pre;
+}
+#book.scholar #left-label  { left: calc(var(--left-label-x) * var(--scale)); }
+#book.scholar #right-label { left: calc(var(--right-label-x) * var(--scale)); }
+
+#book.bedrock {
+    background-image: url("images/book_bedrock.png");
+    --book-w: 320px;
+    --book-h: 207px;
+    --page-w: 121px;
+    --pad-x: 22px;
+    --pad-y: 24.5px;
+    --left-label-x: 85px;
+    --left-label-y: 11px;
+    --right-label-x: 234px;
+    --right-label-y: 11px;
+}
+
+#book.bedrock .page-label {
+    transform: translateX(-50%);
+    right: auto;
+    color:#BCA387;
+}
+#book.bedrock .page .line {
+    height: calc(10px * var(--scale));
+    line-height: calc(10px * var(--scale));
+    white-space: pre;
+}
+#book.bedrock .page { color:black }
+#book.bedrock #left-label  { left: calc(var(--left-label-x) * var(--scale)); }
+#book.bedrock #right-label { left: calc(var(--right-label-x) * var(--scale)); }
+
+#book {
+    position: relative;   /* anchor for the labels */
+}
+
+#heading {
+    color:white;
+    font-family: "Mojangles", monospace;
+    font-size: calc(8px * var(--scale));
+    font-synthesis: none;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    letter-spacing: calc(-.33333333333333px * var(--scale));
+    word-spacing: calc(2px * var(--scale));
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: none;
+
+    text-align: center;
+}
+#description {
+    text-align: center;
+}
+#input-heading, #output-heading, #options-heading, #download-heading {
+    color:white;
+    font-family: "Mojangles", monospace;
+    font-size: calc(6px * var(--scale));
+    font-synthesis: none;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    letter-spacing: calc(-.33333333333333px * var(--scale));
+    word-spacing: calc(2px * var(--scale));
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: none;
+}
+#in {
+    color:white;
+    background-color: rgb(27, 27, 27);
+    font-family: monospace;
+}
+
+.button {
+    color:white;
+    background-color: rgb(27, 27, 27);
+    font-family: monospace;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#nav-buttons {
+    text-align: center;
+}
+
+.warning {
+    color: yellow;
+    background-color: rgb(27, 27, 27);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-width: calc(var(--book-w) * var(--scale));
+}
+.warning-line {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}

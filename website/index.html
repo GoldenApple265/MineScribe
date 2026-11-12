@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MineScribe</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('images/background.png');
+            background-attachment: fixed;
+            background-position: center center;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Minecraft Book and Quill Formatter</h1>
+    <p id="description">Formats text into pages for a Minecraft book and quill. Paragraphs are seperated with an empty line. Click on a page to copy it.</p>
+
+    <div id="workspace">
+        <section id="input-section">
+            <h3 id="input-heading">Input</h3>
+            <textarea id="in" rows="40" cols="60"></textarea>
+        </section>
+
+        <section id="output-section">
+            <h3 id="output-heading">Output</h3>
+            <div id="book" class="scholar">
+                <div class="page" id="left-page" onclick="copyPage(0)"></div>
+                <div class="page" id="right-page" onclick="copyPage(1)"></div>
+                <div class="page-label" id="left-label"></div>
+                <div class="page-label" id="right-label"></div>
+            </div>
+            <div id="nav-buttons">
+                <button class="button" id="first"><<</button>
+                <button class="button" id="prev"><</button>
+                <button class="button" id="next">></button>
+                <button class="button" id="last">>></button>
+            </div>
+        </section>
+    </div>
+    <div class="warning" id="warnings"></div>
+    <div id="extras">
+        <section id="options-section">
+            <h3 id="options-heading">Options</h3>
+            <div id="mode-buttons">
+                <p id="mode-label">Page Layout: </p>
+                <button class="button" id="vanilla-java-view">Java</button>
+                <button class="button" id="scholar-view">Scholar</button>
+                <button class="button" id="bedrock-view">Bedrock</button>
+            </div>
+        </section>
+        <section id="download-section">
+            <h3 id="download-heading">Download</h3>
+            <button class="button" id="download-txt" onclick="downloadTextFile()">.txt</button>
+            <button class="button" id="download-json" onclick="downloadJsonFile()">.json</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
